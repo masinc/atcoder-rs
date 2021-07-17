@@ -8,12 +8,14 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
+        n: u64,
         a: u64,
-        b: u64, c: u64,
-        s: String,
+        x: u64,
+        y: u64,
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    let result: u64 = (0..n).map(|index| if index < a { x } else { y }).sum();
+    writeln!(stdout, "{}", result)?;
 
     Ok(())
 }
