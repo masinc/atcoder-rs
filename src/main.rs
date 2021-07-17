@@ -8,12 +8,19 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
-        a: u64,
-        b: u64, c: u64,
-        s: String,
+        _: u64,
+        s: String
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    let index = s.chars().position(|x| x == '1').unwrap();
+
+    let result = match index % 2 {
+        1 => "Aoki",
+        0 => "Takahashi",
+        _ => unreachable!(),
+    };
+
+    writeln!(stdout, "{}", result)?;
 
     Ok(())
 }
