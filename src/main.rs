@@ -8,12 +8,12 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
-        a: u64,
-        b: u64, c: u64,
-        s: String,
+        a: u64, b: u64
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    let result = if (a * b) % 2 == 0 { "Even" } else { "Odd" };
+
+    writeln!(stdout, "{}", result)?;
 
     Ok(())
 }
