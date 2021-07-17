@@ -42,6 +42,7 @@ dependencies = [
  "alga",
  "ascii",
  "bitset-fixed",
+ "cli_test_dir",
  "either",
  "fixedbitset",
  "getrandom",
@@ -106,6 +107,12 @@ name = "cfg-if"
 version = "0.1.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4785bdd1c96b2a846b2bd7cc02e86b6b3dbf14e7e53446c4f54c92a361040822"
+
+[[package]]
+name = "cli_test_dir"
+version = "0.1.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2bc63338a59538d4f4b767dfb6082e4d26736aadb5100894b76039a04d6ad519"
 
 [[package]]
 name = "either"
