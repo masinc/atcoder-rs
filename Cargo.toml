@@ -1,12 +1,11 @@
 # -*- coding:utf-8-unix -*-
 
 [package]
-name = "atcoder-rust-base"
+name = "atcoder-rs"
 version = "0.1.0"
 edition = "2018"
 
 [workspace]
-exclude = ["./xtask"]
 
 [[bin]]
 name = "main"
