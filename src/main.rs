@@ -8,12 +8,19 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
-        a: u64,
-        b: u64, c: u64,
-        s: String,
+        n: u64,
+        a: [u64; n]
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    let mut a = a.to_vec();
+    let mut result: u64 = 0;
+
+    while a.iter().all(|x| x % 2 == 0) {
+        result += 1;
+        a = a.into_iter().map(|x| x / 2).collect();
+    }
+
+    writeln!(stdout, "{}", result)?;
 
     Ok(())
 }
