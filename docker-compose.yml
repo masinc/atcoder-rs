@@ -1,0 +1,21 @@
+version: "3"
+services:
+  redis:
+    image: masinc/atcoder-rs-redis
+  rust:
+    volumes:
+      - .:/workspace:cached
+
+    # see: https://code.visualstudio.com/docs/remote/create-dev-container#_extend-your-docker-compose-file-for-development
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+    links:
+      - redis:database
+    depends_on:
+      - redis
+    image: masinc/atcoder-rs
