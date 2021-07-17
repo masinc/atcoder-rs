@@ -8,12 +8,12 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
-        a: u64,
-        b: u64, c: u64,
-        s: String,
+        s: String
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    let result = s.chars().filter(|x| x == &'1').count();
+
+    writeln!(stdout, "{}", result)?;
 
     Ok(())
 }
