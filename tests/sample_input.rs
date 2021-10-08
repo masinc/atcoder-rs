@@ -8,14 +8,13 @@ fn sample1() {
     let output = testdir
         .cmd()
         .output_with_stdin(
-            r#"1
-2 3
-test
+            r#"2
+3 1
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str().trim_end_matches('\n'), "6 test");
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "2");
     assert!(output.stderr_str().is_empty());
 }
 
@@ -25,14 +24,13 @@ fn sample2() {
     let output = testdir
         .cmd()
         .output_with_stdin(
-            r#"72
-128 256
-myonmyon
+            r#"3
+2 7 4
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str().trim_end_matches('\n'), "456 myonmyon");
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "5");
     assert!(output.stderr_str().is_empty());
 }
 
@@ -42,13 +40,12 @@ fn sample3() {
     let output = testdir
         .cmd()
         .output_with_stdin(
-            r#"1
-2 3
-abc
+            r#"4
+20 18 2 18
 "#,
         )
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str().trim_end_matches('\n'), "6 abc");
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "18");
     assert!(output.stderr_str().is_empty());
 }

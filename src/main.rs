@@ -8,12 +8,23 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
-        a: u64,
-        b: u64, c: u64,
-        s: String,
+        n: usize,
+        a: [u64; n]
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    let mut cards = a;
+    cards.sort();
+    cards.reverse();
+
+    let (alice, bob): (Vec<_>, Vec<_>) = cards
+        .iter()
+        .enumerate()
+        .partition(|(index, _)| index % 2 == 0);
+    let alice = alice.iter().map(|(_, &n)| n);
+    let bob = bob.iter().map(|(_, &n)| n);
+    let result = alice.sum::<u64>() - bob.sum::<u64>();
+
+    writeln!(stdout, "{}", result)?;
 
     Ok(())
 }
