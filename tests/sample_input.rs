@@ -7,15 +7,10 @@ fn sample1() {
     let testdir = TestDir::new(BIN, "");
     let output = testdir
         .cmd()
-        .output_with_stdin(
-            r#"1
-2 3
-test
-"#,
-        )
+        .output_with_stdin(r#"9 45000"#)
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str().trim_end_matches('\n'), "6 test");
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "0 9 0");
     assert!(output.stderr_str().is_empty());
 }
 
@@ -24,15 +19,10 @@ fn sample2() {
     let testdir = TestDir::new(BIN, "");
     let output = testdir
         .cmd()
-        .output_with_stdin(
-            r#"72
-128 256
-myonmyon
-"#,
-        )
+        .output_with_stdin(r#"20 196000"#)
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str().trim_end_matches('\n'), "456 myonmyon");
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "-1 -1 -1");
     assert!(output.stderr_str().is_empty());
 }
 
@@ -41,14 +31,21 @@ fn sample3() {
     let testdir = TestDir::new(BIN, "");
     let output = testdir
         .cmd()
-        .output_with_stdin(
-            r#"1
-2 3
-abc
-"#,
-        )
+        .output_with_stdin(r#"1000 1234000"#)
         .tee_output()
         .expect_success();
-    assert_eq!(output.stdout_str().trim_end_matches('\n'), "6 abc");
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "2 54 944");
+    assert!(output.stderr_str().is_empty());
+}
+
+#[test]
+fn sample4() {
+    let testdir = TestDir::new(BIN, "");
+    let output = testdir
+        .cmd()
+        .output_with_stdin(r#"2000 20000000"#)
+        .tee_output()
+        .expect_success();
+    assert_eq!(output.stdout_str().trim_end_matches('\n'), "2000 0 0");
     assert!(output.stderr_str().is_empty());
 }
