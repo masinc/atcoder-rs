@@ -8,12 +8,13 @@ fn run(mut stdout: impl Write) -> TResult<()> {
     // writeln!(stdout, "{}", s)?;
 
     input! {
-        a: u64,
-        b: u64, c: u64,
-        s: String,
+        n: u64,
+        mut d: [u64; n]
     }
 
-    writeln!(stdout, "{} {}", a + b + c, s)?;
+    d.sort();
+    d.dedup();
+    writeln!(stdout, "{}", d.len())?;
 
     Ok(())
 }
